@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.spring.boot.demo</groupId>
-	<artifactId>spring-boot-demo-profiles-ymal</artifactId>
+	<artifactId>spring-boot-demo-profiles-yaml</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-demo-profiles-ymal</name>
-	<description>Demo project for profiles of Spring Boot based on ymal</description>
+	<description>Demo project for profiles of Spring Boot based on yaml</description>
 
 	<properties>
 		<java.version>1.8</java.version>
