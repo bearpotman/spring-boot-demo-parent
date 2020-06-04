@@ -14,4 +14,4 @@
   
 - spring-boot-demo-jpa
 
-  `spring boot` 整合 `JPA` demo。
+  `spring boot` 整合 `JPA` demo，同时提供 `Jackson` 序列化与反序列化配置。

@@ -1,6 +1,5 @@
 package com.spring.boot.demo.jpa.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -26,6 +25,5 @@ public class UserVO {
     /**
      * 注册时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registerTime;
 }
