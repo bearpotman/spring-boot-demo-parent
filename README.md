@@ -11,3 +11,7 @@
 - spring-boot-demo-redis
 
   `spring boot` 整合 `redis` demo，同时实现了序列化功能。
+  
+- spring-boot-demo-jpa
+
+  `spring boot` 整合 `JPA` demo。
