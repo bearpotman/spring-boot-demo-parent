@@ -1,4 +1,8 @@
 # spring boot中使用JPA
+主要实现功能：
+- `spring boot` 整合 `JPA`;
+- `mapstruct` 支持 [mapstruct官网](https://mapstruct.org/)。
+
 `pom.xml` 主要依赖：
 ```xml
 <dependency>
@@ -10,6 +14,12 @@
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
     <scope>runtime</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <version>${mapstruct.version}</version>
 </dependency>
 ```
 
@@ -71,10 +81,23 @@ public interface UserRepository extends JpaRepository<User, Long> {
 }
 ```
 
-`service` 层与 `controller` 层都是一些简单的测试代码，就不一一列举了。
+`service` 层与 `controller` 层都是一些简单的测试代码，就不一一列举了，只看一下 `mapstruct` 的使用：
+
+`UserConvert.java` 转换接口:
+```java
+@Mapper
+public interface UserConvert {
+
+    @Mapping(source = "id", target = "userId")
+    UserVO convert(User user);
+
+}
+```
 
 需要注意的地方：
 - 首先需要在 `MySQL` 中创建数据库，比如创建数据库 `spring_boot_demo_jpa`;
 - 修改 `application-dev.yml` 中的配置信息，主要指 `url`、`username` 和 `password`;
 - 启动项目，查看上述创建的数据库中是否存在表 `jpa_user` 或可直接查看控制台日志看是否有输出创建表的语句;
+
+  如果启动过程中报错信息是关于 `mapstruct` 相关的错误，就需要先进行 `maven compile`。
 - 最后可根据 `UserController.java` 中的接口进行简单测试。
