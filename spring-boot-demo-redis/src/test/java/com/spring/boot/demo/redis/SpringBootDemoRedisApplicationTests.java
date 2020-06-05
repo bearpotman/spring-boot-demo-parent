@@ -28,7 +28,7 @@ class SpringBootDemoRedisApplicationTests {
         try {
             User user = new User()
                     .setId(10001L)
-                    .setName("wangJun")
+                    .setName(null)
                     .setAge(18);
             redisUtil.set(String.format("user:%d", user.getId()), user);
         } catch (Exception e) {
