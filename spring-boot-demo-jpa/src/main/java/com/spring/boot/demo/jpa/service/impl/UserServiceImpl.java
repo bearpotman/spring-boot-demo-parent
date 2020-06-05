@@ -1,6 +1,7 @@
 package com.spring.boot.demo.jpa.service.impl;
 
 import com.spring.boot.demo.jpa.common.Result;
+import com.spring.boot.demo.jpa.convert.UserConvert;
 import com.spring.boot.demo.jpa.entities.User;
 import com.spring.boot.demo.jpa.enums.ResultCodeEnum;
 import com.spring.boot.demo.jpa.repository.UserRepository;
@@ -21,6 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserConvert userConvert;
 
     /**
      * 注册
@@ -59,11 +62,11 @@ public class UserServiceImpl implements UserService {
         if (!md5.equals(user.getPassword())) {
             return Result.error(ResultCodeEnum.PASSWORD_ERROR);
         }
-        UserVO userVO = new UserVO()
-                .setUserId(user.getId())
-                .setAccount(user.getAccount())
-                .setRegisterTime(user.getCreateTime());
-        return Result.success(userVO);
+//        UserVO userVO = new UserVO()
+//                .setUserId(user.getId())
+//                .setAccount(user.getAccount())
+//                .setRegisterTime(user.getCreateTime());
+        return Result.success(userConvert.convert(user));
     }
 
     /**
