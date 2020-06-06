@@ -30,4 +30,10 @@
   
   `spring boot` 整合 `swagger` demo。
   
-  在之前 `spring-boot-demo-jpa` 案例的基础之上添加了对 `swagger` 的支持，接口更新后悔更新到 `swagger` 文档中，方便后端与前端小姐姐对接。
+  在之前 `spring-boot-demo-jpa` 案例的基础之上添加了对 `swagger` 的支持，接口更新后会更新到 `swagger` 文档中，方便后端与前端小姐姐对接。
+  
+- spring-boot-demo-mybtis-plus
+
+  `spring boot` 整合 `mybatis-plus` demo。
+    
+  在之前 `spring-boot-demo-swagger` 案例的基础之上将数据访问层由 `JPA` 替换为 `mybatis-plus`，同时提供代码生成器。
