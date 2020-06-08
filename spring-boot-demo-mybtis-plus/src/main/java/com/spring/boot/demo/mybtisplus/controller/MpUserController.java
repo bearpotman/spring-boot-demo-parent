@@ -6,6 +6,7 @@ import com.spring.boot.demo.mybtisplus.convert.UserConvert;
 import com.spring.boot.demo.mybtisplus.dto.UserDTO;
 import com.spring.boot.demo.mybtisplus.entity.MpUser;
 import com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum;
+import com.spring.boot.demo.mybtisplus.exception.CustomException;
 import com.spring.boot.demo.mybtisplus.service.IMpUserService;
 import com.spring.boot.demo.mybtisplus.util.MD5Util;
 import io.swagger.annotations.Api;
@@ -46,14 +47,15 @@ public class MpUserController {
         MpUser mpUser = userService.lambdaQuery()
                 .eq(MpUser::getAccount, userDTO.getAccount())
                 .one();
-        if (mpUser == null) {
-            userDTO.setPassword(MD5Util.md5(userDTO.getAccount(), userDTO.getPassword()));
-            boolean save = userService.save(userConvert.convert(userDTO));
-            if (save) {
-                return Result.success();
-            }
+        if (mpUser != null) {
+            throw new CustomException(ResultCodeEnum.REGISTERED);
         }
-        return Result.error(ResultCodeEnum.REGISTERED);
+        userDTO.setPassword(MD5Util.md5(userDTO.getAccount(), userDTO.getPassword()));
+        boolean save = userService.save(userConvert.convert(userDTO));
+        if (!save) {
+            throw new CustomException(ResultCodeEnum.SYSTEM_ERROR);
+        }
+        return Result.success();
     }
 
     /**
@@ -69,11 +71,11 @@ public class MpUserController {
                 .eq(MpUser::getAccount, userDTO.getAccount())
                 .one();
         if (mpUser == null) {
-            return Result.error(ResultCodeEnum.ACCOUNT_ERROR);
+            throw new CustomException(ResultCodeEnum.ACCOUNT_ERROR);
         }
         String md5 = MD5Util.md5(userDTO.getAccount(), userDTO.getPassword());
         if (!md5.equals(mpUser.getPassword())) {
-            return Result.error(ResultCodeEnum.PASSWORD_ERROR);
+            throw new CustomException(ResultCodeEnum.PASSWORD_ERROR);
         }
         return Result.success(userConvert.convert(mpUser));
     }
