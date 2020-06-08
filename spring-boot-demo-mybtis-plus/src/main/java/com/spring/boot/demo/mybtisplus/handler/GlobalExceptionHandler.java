@@ -1,11 +1,17 @@
 package com.spring.boot.demo.mybtisplus.handler;
 
+import cn.hutool.core.util.StrUtil;
 import com.spring.boot.demo.mybtisplus.common.Result;
 import com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum;
 import com.spring.boot.demo.mybtisplus.exception.CustomException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  * @Auth wangJun
@@ -17,15 +23,71 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * 自定义异常处理
+     *
+     * @param ce {@link CustomException}
+     * @return {@link Result}
+     */
     @ExceptionHandler
     public Result customExceptionHandler(CustomException ce) {
-        log.error("自定义异常", ce);
+        log.warn("[customExceptionHandler]", ce);
         return Result.error(ce.getResultCodeEnum());
     }
 
+    /**
+     * 未知异常处理
+     *
+     * @param e {@link Throwable}
+     * @return {@link Result}
+     */
     @ExceptionHandler
-    public Result exceptionHandler(Exception e) {
-        log.error("系统异常", e);
+    public Result exceptionHandler(Throwable e) {
+        log.warn("[exceptionHandler]", e);
         return Result.error(ResultCodeEnum.SYSTEM_ERROR);
+    }
+
+    /**
+     * 方法处参数校验异常处理
+     *
+     * @param cve {@link ConstraintViolationException}
+     * @return {@link Result}
+     */
+    @ExceptionHandler
+    public Result constraintViolationExceptionHandler(ConstraintViolationException cve) {
+        log.warn("[constraintViolationExceptionHandler]", cve);
+        StringBuilder message = new StringBuilder();
+        for (ConstraintViolation<?> constraintViolation : cve.getConstraintViolations()) {
+            if (message.length() > 0) {
+                message.append("; ");
+            }
+            message.append(constraintViolation.getMessage());
+        }
+        return Result.error(ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getCode(),
+                StrUtil.format("{}: {}",
+                        ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getMsg(),
+                        message.toString()));
+    }
+
+    /**
+     * bean对象处参数校验异常处理
+     *
+     * @param me {@link MethodArgumentNotValidException}
+     * @return {@link Result}
+     */
+    @ExceptionHandler
+    public Result bindExceptionHandler(MethodArgumentNotValidException me) {
+        log.warn("[bindExceptionHandler]", me);
+        StringBuilder message = new StringBuilder();
+        for (ObjectError objectError : me.getBindingResult().getAllErrors()) {
+            if (message.length() > 0) {
+                message.append("; ");
+            }
+            message.append(objectError.getDefaultMessage());
+        }
+        return Result.error(ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getCode(),
+                StrUtil.format("{}: {}",
+                        ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getMsg(),
+                        message.toString()));
     }
 }

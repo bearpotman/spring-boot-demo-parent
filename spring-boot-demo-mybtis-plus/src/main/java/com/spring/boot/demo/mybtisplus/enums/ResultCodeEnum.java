@@ -35,11 +35,14 @@ public enum ResultCodeEnum {
     /*------------------------ 系统级别 ---------------------*/
     SUCCESS(0, "成功"),
     SYSTEM_ERROR(2001001000, "系统异常"),
+    INVALID_REQUEST_PARAM_ERROR(2001001001, "参数校验异常"),
 
     /*------------------------ 用户模块 ---------------------*/
     REGISTERED(1001002000, "已注册"),
     ACCOUNT_ERROR(1001002001, "账号错误"),
-    PASSWORD_ERROR(1001002002, "密码错误"),;
+    PASSWORD_ERROR(1001002002, "密码错误"),
+    USER_NOT_EXIST(1001002003, "用户不存在"),
+    ;
 
     private Integer code;
     private String msg;

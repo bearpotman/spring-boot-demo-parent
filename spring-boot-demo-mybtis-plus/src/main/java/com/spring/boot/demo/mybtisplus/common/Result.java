@@ -44,4 +44,11 @@ public class Result<T> {
                 .setMsg(resultEnum.getMsg());
         return result;
     }
+
+    public static Result error(Integer code, String msg) {
+        Result result = new Result()
+                .setCode(code)
+                .setMsg(msg);
+        return result;
+    }
 }

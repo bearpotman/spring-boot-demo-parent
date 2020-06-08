@@ -23,9 +23,16 @@
 		<swagger.bootstrap.ui.version>1.9.6</swagger.bootstrap.ui.version>
 		<mybatis.plus.version>3.3.2</mybatis.plus.version>
 		<freemarker.version>2.3.30</freemarker.version>
+		<hibernate.validator.version>6.1.5.Final</hibernate.validator.version>
 	</properties>
 
 	<dependencies>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.freemarker</groupId>

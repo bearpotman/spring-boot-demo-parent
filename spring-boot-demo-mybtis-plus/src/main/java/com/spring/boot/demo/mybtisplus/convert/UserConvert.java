@@ -1,6 +1,6 @@
 package com.spring.boot.demo.mybtisplus.convert;
 
-import com.spring.boot.demo.mybtisplus.dto.UserDTO;
+import com.spring.boot.demo.mybtisplus.dto.UserRegisterDTO;
 import com.spring.boot.demo.mybtisplus.entity.MpUser;
 import com.spring.boot.demo.mybtisplus.vo.UserVO;
 import org.mapstruct.Mapper;
@@ -22,6 +22,6 @@ public interface UserConvert {
     })
     UserVO convert(MpUser mpUser);
 
-    MpUser convert(UserDTO userDTO);
+    MpUser convert(UserRegisterDTO userDTO);
 
 }
