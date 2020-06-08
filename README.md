@@ -36,4 +36,7 @@
 
   `spring boot` 整合 `mybatis-plus` demo。
     
-  在之前 `spring-boot-demo-swagger` 案例的基础之上将数据访问层由 `JPA` 替换为 `mybatis-plus`，同时提供代码生成器。
+  在之前 `spring-boot-demo-swagger` 案例的基础之上将数据访问层由 `JPA` 替换为 `mybatis-plus`，同时新增了以下功能：
+  - 代码生成器；
+  - 全局异常处理；
+  - 参数校验以及校验异常全局处理。
