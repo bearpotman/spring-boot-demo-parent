@@ -92,7 +92,7 @@ public class MpUserController {
                 .eq(MpUser::getAccount, userLoginDTO.getAccount())
                 .one();
         if (mpUser == null) {
-            throw new CustomException(ResultCodeEnum.ACCOUNT_ERROR);
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST);
         }
         String md5 = MD5Util.md5(userLoginDTO.getAccount(), userLoginDTO.getPassword());
         if (!md5.equals(mpUser.getPassword())) {

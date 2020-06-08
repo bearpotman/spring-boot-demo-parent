@@ -39,9 +39,8 @@ public enum ResultCodeEnum {
 
     /*------------------------ 用户模块 ---------------------*/
     REGISTERED(1001002000, "已注册"),
-    ACCOUNT_ERROR(1001002001, "账号错误"),
+    USER_NOT_EXIST(1001002001, "用户不存在"),
     PASSWORD_ERROR(1001002002, "密码错误"),
-    USER_NOT_EXIST(1001002003, "用户不存在"),
     ;
 
     private Integer code;
