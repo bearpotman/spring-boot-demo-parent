@@ -51,3 +51,14 @@ public class SpringBootDemoMybtisPlusApplication {
 ```
 
 最后启动项目，访问接口测试。
+
+===============================================
+
+`2020/06/08` 更新：
+
+新增 `全局异常处理`，主要新增的有：
+
+- `com.spring.boot.demo.mybtisplus.exception.CustomException`: 自定义异常；
+- `com.spring.boot.demo.mybtisplus.handler.GlobalExceptionHandler`: 全局异常处理；
+- `com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum`: 统一状态码；
+- `com.spring.boot.demo.mybtisplus.controller.MpUserController`: 具体使用。

@@ -3,12 +3,7 @@ package com.spring.boot.demo.mybtisplus.enums;
 /**
  * @Auth wangJun
  * @Version V1.0.1
- * @Description
- * @Date 2020/06/04
- */
-
-/**
- * 服务异常
+ * @Description 统一状态码
  *
  * 参考艿艿的博客 http://www.iocoder.cn/Spring-Boot/WebFlux/?self
  *
@@ -33,6 +28,8 @@ package com.spring.boot.demo.mybtisplus.enums;
  * 第四段，3 位，错误码
  *       不限制规则。
  *       一般建议，每个模块自增。
+ *
+ * @Date 2020/06/04
  */
 public enum ResultCodeEnum {
     /*------------------------ 系统级别 ---------------------*/
