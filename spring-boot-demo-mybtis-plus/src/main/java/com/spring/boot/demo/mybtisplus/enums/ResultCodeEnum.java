@@ -57,10 +57,6 @@ public enum ResultCodeEnum {
         return code;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
     public static ResultCodeEnum fetch(Integer code) {
         for (ResultCodeEnum resultCode : values()) {
             if (resultCode.code.equals(code)) {
