@@ -1,6 +1,6 @@
 package com.spring.boot.demo.mybtisplus.common;
 
-import com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum;
+import com.spring.boot.demo.mybtisplus.enums.ResultCode;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,11 +16,11 @@ public class Result<T> {
     /**
      * 状态码
      */
-    private Integer code = ResultCodeEnum.SUCCESS.getCode();
+    private Integer code = ResultCode.SUCCESS.getCode();
     /**
      * 描述信息
      */
-    private String msg = ResultCodeEnum.SUCCESS.getMsg();
+    private String msg = ResultCode.SUCCESS.getMsg();
     /**
      * 响应数据
      */
@@ -38,7 +38,7 @@ public class Result<T> {
         return new Result();
     }
 
-    public static Result error(ResultCodeEnum resultEnum) {
+    public static Result error(ResultCode resultEnum) {
         Result result = new Result()
                 .setCode(resultEnum.getCode())
                 .setMsg(resultEnum.getMsg());

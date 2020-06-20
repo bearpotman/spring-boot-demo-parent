@@ -1,8 +1,8 @@
-package com.spring.boot.demo.mybtisplus.handler;
+package com.spring.boot.demo.mybtisplus.exception.handler;
 
 import cn.hutool.core.util.StrUtil;
 import com.spring.boot.demo.mybtisplus.common.Result;
-import com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum;
+import com.spring.boot.demo.mybtisplus.enums.ResultCode;
 import com.spring.boot.demo.mybtisplus.exception.CustomException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.ObjectError;
@@ -31,8 +31,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler
     public Result customExceptionHandler(CustomException ce) {
-        log.warn("[customExceptionHandler]", ce);
-        return Result.error(ce.getResultCodeEnum());
+        log.warn("【customExceptionHandler】 - {}", ce.getMessage());
+        return Result.error(ce.getResultCode());
     }
 
     /**
@@ -43,8 +43,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler
     public Result exceptionHandler(Throwable e) {
-        log.warn("[exceptionHandler]", e);
-        return Result.error(ResultCodeEnum.SYSTEM_ERROR);
+        log.warn("[exceptionHandler] - {}", e);
+        return Result.error(ResultCode.SYSTEM_ERROR);
     }
 
     /**
@@ -55,7 +55,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler
     public Result constraintViolationExceptionHandler(ConstraintViolationException cve) {
-        log.warn("[constraintViolationExceptionHandler]", cve);
+        log.warn("【constraintViolationExceptionHandler】 - {}", cve.getMessage());
         StringBuilder message = new StringBuilder();
         for (ConstraintViolation<?> constraintViolation : cve.getConstraintViolations()) {
             if (message.length() > 0) {
@@ -63,9 +63,9 @@ public class GlobalExceptionHandler {
             }
             message.append(constraintViolation.getMessage());
         }
-        return Result.error(ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getCode(),
+        return Result.error(ResultCode.INVALID_REQUEST_PARAM_ERROR.getCode(),
                 StrUtil.format("{}: {}",
-                        ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getMsg(),
+                        ResultCode.INVALID_REQUEST_PARAM_ERROR.getMsg(),
                         message.toString()));
     }
 
@@ -77,7 +77,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler
     public Result bindExceptionHandler(MethodArgumentNotValidException me) {
-        log.warn("[bindExceptionHandler]", me);
+        log.warn("【bindExceptionHandler】 - {}", me.getMessage());
         StringBuilder message = new StringBuilder();
         for (ObjectError objectError : me.getBindingResult().getAllErrors()) {
             if (message.length() > 0) {
@@ -85,9 +85,9 @@ public class GlobalExceptionHandler {
             }
             message.append(objectError.getDefaultMessage());
         }
-        return Result.error(ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getCode(),
+        return Result.error(ResultCode.INVALID_REQUEST_PARAM_ERROR.getCode(),
                 StrUtil.format("{}: {}",
-                        ResultCodeEnum.INVALID_REQUEST_PARAM_ERROR.getMsg(),
+                        ResultCode.INVALID_REQUEST_PARAM_ERROR.getMsg(),
                         message.toString()));
     }
 }

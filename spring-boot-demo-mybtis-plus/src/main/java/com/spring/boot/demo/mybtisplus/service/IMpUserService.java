@@ -1,11 +1,11 @@
 package com.spring.boot.demo.mybtisplus.service;
 
-import com.spring.boot.demo.mybtisplus.entity.MpUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.spring.boot.demo.mybtisplus.entity.MpUser;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wangJun

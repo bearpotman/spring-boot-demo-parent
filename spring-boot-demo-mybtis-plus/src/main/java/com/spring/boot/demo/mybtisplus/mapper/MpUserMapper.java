@@ -1,11 +1,11 @@
 package com.spring.boot.demo.mybtisplus.mapper;
 
-import com.spring.boot.demo.mybtisplus.entity.MpUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.spring.boot.demo.mybtisplus.entity.MpUser;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author wangJun

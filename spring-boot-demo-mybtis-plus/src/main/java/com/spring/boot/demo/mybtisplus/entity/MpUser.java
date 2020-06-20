@@ -2,16 +2,17 @@ package com.spring.boot.demo.mybtisplus.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * <p>
- * 
+ * <p>
  * </p>
  *
  * @author wangJun
@@ -19,7 +20,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="MpUser对象", description="")
+@ApiModel(value = "MpUser对象", description = "")
 public class MpUser implements Serializable {
 
     private static final long serialVersionUID = 1L;

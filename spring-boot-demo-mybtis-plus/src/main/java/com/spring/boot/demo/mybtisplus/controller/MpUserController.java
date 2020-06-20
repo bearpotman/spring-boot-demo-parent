@@ -1,12 +1,11 @@
 package com.spring.boot.demo.mybtisplus.controller;
 
-
 import com.spring.boot.demo.mybtisplus.common.Result;
 import com.spring.boot.demo.mybtisplus.convert.UserConvert;
 import com.spring.boot.demo.mybtisplus.dto.UserLoginDTO;
 import com.spring.boot.demo.mybtisplus.dto.UserRegisterDTO;
 import com.spring.boot.demo.mybtisplus.entity.MpUser;
-import com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum;
+import com.spring.boot.demo.mybtisplus.enums.ResultCode;
 import com.spring.boot.demo.mybtisplus.exception.CustomException;
 import com.spring.boot.demo.mybtisplus.service.IMpUserService;
 import com.spring.boot.demo.mybtisplus.util.MD5Util;
@@ -51,7 +50,7 @@ public class MpUserController {
                 .eq(MpUser::getId, userId)
                 .one();
         if (mpUser == null) {
-            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST);
+            throw new CustomException(ResultCode.USER_NOT_EXIST);
         }
         return Result.success(mpUser);
     }
@@ -69,12 +68,12 @@ public class MpUserController {
                 .eq(MpUser::getAccount, userRegisterDTO.getAccount())
                 .one();
         if (mpUser != null) {
-            throw new CustomException(ResultCodeEnum.REGISTERED);
+            throw new CustomException(ResultCode.REGISTERED);
         }
         userRegisterDTO.setPassword(MD5Util.md5(userRegisterDTO.getAccount(), userRegisterDTO.getPassword()));
         boolean save = userService.save(userConvert.convert(userRegisterDTO));
         if (!save) {
-            throw new CustomException(ResultCodeEnum.SYSTEM_ERROR);
+            throw new CustomException(ResultCode.SYSTEM_ERROR);
         }
         return Result.success();
     }
@@ -92,11 +91,11 @@ public class MpUserController {
                 .eq(MpUser::getAccount, userLoginDTO.getAccount())
                 .one();
         if (mpUser == null) {
-            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST);
+            throw new CustomException(ResultCode.USER_NOT_EXIST);
         }
         String md5 = MD5Util.md5(userLoginDTO.getAccount(), userLoginDTO.getPassword());
         if (!md5.equals(mpUser.getPassword())) {
-            throw new CustomException(ResultCodeEnum.PASSWORD_ERROR);
+            throw new CustomException(ResultCode.PASSWORD_ERROR);
         }
         return Result.success(userConvert.convert(mpUser));
     }

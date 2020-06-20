@@ -1,8 +1,8 @@
 package com.spring.boot.demo.mybtisplus.generator;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -47,7 +47,7 @@ public class CodeGenerator {
         System.out.println(help.toString());
         if (scanner.hasNext()) {
             String ipt = scanner.next();
-            if (StringUtils.isNotBlank(ipt)) {
+            if (StrUtil.isNotBlank(ipt)) {
                 return ipt;
             }
         }
@@ -77,7 +77,6 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig()
-//                .setModuleName(MODULE_NAME)
                 .setParent(PARENT_PACKAGE);
         mpg.setPackageInfo(pc);
 

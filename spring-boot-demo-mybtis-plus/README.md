@@ -59,8 +59,8 @@ public class SpringBootDemoMybtisPlusApplication {
 新增 `全局异常处理`，主要新增的有：
 
 - `com.spring.boot.demo.mybtisplus.exception.CustomException`: 自定义异常；
-- `com.spring.boot.demo.mybtisplus.handler.GlobalExceptionHandler`: 全局异常处理；
-- `com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum`: 统一状态码；
+- `com.spring.boot.demo.mybtisplus.exception.handler.GlobalExceptionHandler`: 全局异常处理；
+- `com.spring.boot.demo.mybtisplus.enums.ResultCode`: 统一状态码；
 - `com.spring.boot.demo.mybtisplus.controller.MpUserController`: 具体使用。
 
 新增 `参数校验` 功能：

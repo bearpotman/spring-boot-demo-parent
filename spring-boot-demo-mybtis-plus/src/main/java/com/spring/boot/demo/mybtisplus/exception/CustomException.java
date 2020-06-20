@@ -1,6 +1,6 @@
 package com.spring.boot.demo.mybtisplus.exception;
 
-import com.spring.boot.demo.mybtisplus.enums.ResultCodeEnum;
+import com.spring.boot.demo.mybtisplus.enums.ResultCode;
 import lombok.Data;
 
 /**
@@ -12,10 +12,10 @@ import lombok.Data;
 @Data
 public final class CustomException extends RuntimeException {
 
-    private ResultCodeEnum resultCodeEnum;
+    private ResultCode resultCode;
 
-    public CustomException(ResultCodeEnum resultCodeEnum) {
-        super(resultCodeEnum.getMsg());
-        this.resultCodeEnum = resultCodeEnum;
+    public CustomException(ResultCode resultCode) {
+        super(resultCode.getMsg());
+        this.resultCode = resultCode;
     }
 }

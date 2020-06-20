@@ -36,7 +36,7 @@ import java.util.Locale;
  * 一般建议，每个模块自增。
  * @Date 2020/06/04
  */
-public enum ResultCodeEnum {
+public enum ResultCode {
     /*------------------------ 系统级别 ---------------------*/
     SUCCESS(0),
     SYSTEM_ERROR(2001001000),
@@ -49,7 +49,7 @@ public enum ResultCodeEnum {
 
     private Integer code;
 
-    ResultCodeEnum(Integer code) {
+    ResultCode(Integer code) {
         this.code = code;
     }
 
@@ -57,8 +57,8 @@ public enum ResultCodeEnum {
         return code;
     }
 
-    public static ResultCodeEnum fetch(Integer code) {
-        for (ResultCodeEnum resultCode : values()) {
+    public static ResultCode fetch(Integer code) {
+        for (ResultCode resultCode : values()) {
             if (resultCode.code.equals(code)) {
                 return resultCode;
             }
