@@ -238,3 +238,12 @@ public class SpringBootDemoMybtisPlusApplication {
         private String password;
     }
     ```
+    
+==============================================================================
+
+2020/06/20更新：
+- 全局异常处理优化；<br>
+- 参数校验国际化支持；<br>
+    `resources` 路径下添加参数校验国际化配置文件 `ValidationMessages**.properties`；
+- 全局国际化优化；<br>
+    删除 `aspect.LocaleHolderAspect` 类，将主要逻辑迁移到 `interceptor.HttpRequestInterceptor`，并添加拦截器配置类 `config.InterceptorConfig`；
