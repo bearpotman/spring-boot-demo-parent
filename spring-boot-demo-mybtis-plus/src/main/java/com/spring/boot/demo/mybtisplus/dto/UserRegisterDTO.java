@@ -22,14 +22,14 @@ public class UserRegisterDTO {
      * 账号
      */
     @ApiModelProperty(value = "账号")
-    @NotEmpty(message = "账号不能为空")
-    @Size(min = 6, max = 20, message = "账号长度必须是6~20个字符")
+    @NotEmpty(message = "{account.notEmpty}")
+    @Size(min = 6, max = 20, message = "{account.size}")
     private String account;
     /**
      * 登录密码
      */
     @ApiModelProperty(value = "密码")
-    @NotEmpty(message = "密码不能为空")
-    @Size(min = 6, max = 12, message = "密码长度必须是6~12个字符")
+    @NotEmpty(message = "{password.notEmpty}")
+    @Size(min = 6, max = 12, message = "{password.size}")
     private String password;
 }
