@@ -30,4 +30,5 @@ public class UserVO {
      * 真实姓名
      */
     private String realName;
+    private String test;
 }
